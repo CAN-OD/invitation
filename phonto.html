@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        button {width: auto;height: 30px;}
+        #box {width: 600px;height: 400px;margin: 20px auto;position: relative;overflow: hidden;}
+        #box div {background: url("images/hzw.jpg") no-repeat ;background-size:600px auto;position: absolute;left: 0;top: 0;}
+        #box.set div{
+            opacity: 1!important;
+            transform:perspective(600px) translate3d(0px,0px,0px) rotate(0deg) scale(1)!important;
+            -moz-transform:perspective(600px) translate3d(0px,0px,0px) rotate(0deg) scale(1)!important;
+            -webkit-transform:perspective(600px) translate3d(0px,0px,0px) rotate(0deg) scale(1)!important;
+        }
+    </style>
+</head>
+<body>
+<button>点击展示效果</button>
+<div id="box">
+
+</div>
+<script src="js/jquery/jquery-1.7.1.js"></script>
+<script>
+    $(function(){
+        var box = $("#box"),
+            btn = $("button"),
+            x = 60,
+            y = 40,
+            w = box.outerWidth()/ x,
+            h = box.outerHeight()/y;
+
+        btn.on("click",function(){
+            box.toggleClass("set");
+        });
+
+        function Random(start,end){
+            return Math.random()*(end-start)+start;
+        }
+
+        for(var i = 0;i < y;i++){
+            for(var j = 0;j <x;j++) {
+                var _div=$("<div></div>"),
+                    _left = j * w,
+                    _top = i * h;
+
+                _div.css({
+                    'width':w+'px' ,
+                    'height':h+'px',
+                    'left':_left+'px',
+                    'top':_top+'px',
+                    'opacity':0,
+                    'background-position':(-_left) + 'px ' + (-_top) + 'px',
+                    'transition':'all '+ Random(1,1.8) +'s  ease',
+                    'transform':'perspective(600px) translate3d('+Random(-200,200)+'px, '+Random(-200,200)+'px,300px) rotate('+Random(-90,90)+'deg) scale('+ Random(0,2) +')'
+                });
+//                _div.style.transition = 'all '+ Random(1,1.8) +'s  ease';
+//                _div.style.transform  = 'perspective(800px) translate3d('+Random(-200,200)+'px, '+Random(-200,200)+'px,300px) rotate('+Random(-90,90)+'deg) scale('+ Random(0,2) +')'
+//                box.appendChild(_div);
+                box.append(_div);
+            }
+        }
+    })
+</script>
+</body>
+</html>

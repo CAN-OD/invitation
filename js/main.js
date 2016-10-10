@@ -6,7 +6,8 @@ require.config({
     paths : {
         "jquery" : ["jquery/jquery-1.7.1"],
         "index" : "index",
-        "ckplayer" : "plugin/ckplayer/ckplayer"
+        "ckplayer" : "plugin/ckplayer/ckplayer",
+        "audioplayer" : "plugin/AudioPlayer/js/audioplayer"
     },
     shim:{
 

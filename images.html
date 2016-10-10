@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>美女</title>
+    <style>
+        #div{width: 800px;height: 500px;position: relative;margin: 0px auto;}
+        #div div{background: url(http://pic.4j4j.cn/upload/pic/20130909/681ebf9d64.jpg) no-repeat;background-size: 800px auto;position: absolute; left: 0px;top: 0px;}
+        #div.set div{ opacity: 1!important;
+            transform:perspective(800px) translate3d(0px,0px,0px) rotate(0deg) scale(1)!important;
+            -moz-transform:perspective(800px) translate3d(0px,0px,0px) rotate(0deg) scale(1)!important;
+            -webkit-transform:perspective(800px) translate3d(0px,0px,0px) rotate(0deg) scale(1)!important;
+        }
+    </style>
+</head>
+<body>
+<button id="button" type="button">点击看美女</button>
+<div id="div"></div>
+<script>
+    var box=document.querySelector('#div'),
+        button=document.querySelector('#button'),
+        c=60,
+        r=30;
+    var w=box.offsetWidth/c,
+        h=box.offsetHeight/r;
+    function Random(start,end){
+        return Math.random()*(end-start)+start;
+    }
+    button.onclick=function(){
+        box.classList.toggle('set');
+    }
+    for(var i = 0;i < r;i++){
+        for(var j = 0;j < c;j++) {
+            var _div=document.createElement('div');
+            var _left = j * w,
+                _top = i * h;
+            _div.style.cssText = 'width:'+w+'px;height:'+h+'px;left:'+_left+'px;top:'+_top+'px; opacity:0;background-position:'+(-_left) + 'px ' + (-_top) + 'px';
+            _div.style.transition = 'all '+ Random(1,1.8) +'s  ease';
+            _div.style.transform  = 'perspective(800px) translate3d('+Random(-200,200)+'px, '+Random(-200,200)+'px,300px) rotate('+Random(-90,90)+'deg) scale('+ Random(0,2) +')'
+            box.appendChild(_div);
+        }
+    }
+</script>
+</body>
+</html>
